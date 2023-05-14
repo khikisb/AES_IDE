@@ -14,16 +14,13 @@ def decrypt_AES_IDE(ciphertext, key):
 
 def app():
     st.set_page_config(page_title="Enkripsi & Dekripsi AES-IDE", page_icon=":lock:")
+    st.title("Kelompok 1")
     st.title("Enkripsi & Dekripsi AES-IDE")
 
+    st.title("Enkripsi Plaintext AES Metode IDE")
     # Input Plaintext dan Kunci untuk Enkripsi
     plaintext_enkripsi = st.text_input("Masukkan Plain Text untuk Enkripsi: ")
     key_enkripsi = st.text_input("Masukkan kunci untuk Enkripsi (16 karakter): ")
-
-    # Input Ciphertext dan Kunci untuk Dekripsi
-    ciphertext_deskripsi = st.text_input("Masukkan Ciphertext untuk Deskripsi: ")
-    key_deskripsi = st.text_input("Masukkan kunci untuk Deskripsi (16 karakter): ")
-
     # Tombol Enkripsi
     if st.button("Enkripsi"):
         if len(key_enkripsi) == 16:
@@ -32,6 +29,13 @@ def app():
             st.write("Ciphertext: ", ciphertext.hex())
         else:
             st.error("Kunci harus memiliki 16 karakter!")
+            
+    st.title("Deskripsi Chippertext AES Metode IDE")    
+            
+    # Input Ciphertext dan Kunci untuk Dekripsi
+    ciphertext_deskripsi = st.text_input("Masukkan Ciphertext untuk Deskripsi: ")
+    key_deskripsi = st.text_input("Masukkan kunci untuk Deskripsi (16 karakter): ")
+
 
     # Tombol Dekripsi
     if st.button("Dekripsi"):
