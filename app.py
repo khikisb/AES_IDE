@@ -15,7 +15,7 @@ def decrypt_AES_IDE(ciphertext, key):
 def app():
     st.set_page_config(page_title="Enkripsi & Dekripsi AES-IDE", page_icon=":lock:")
     st.title("Kelompok 1")
-    st.title("Enkripsi & Dekripsi AES-IDE")
+    st.title("(Enkripsi & Dekripsi AES-IDE)")
 
     st.title("Enkripsi Plaintext AES Metode IDE")
     # Input Plaintext dan Kunci untuk Enkripsi
