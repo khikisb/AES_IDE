@@ -16,28 +16,27 @@ def app():
     st.set_page_config(page_title="Enkripsi & Dekripsi AES-IDE", page_icon=":lock:")
     st.title("Enkripsi & Dekripsi AES-IDE")
 
-    # Input Plaintext dan Kunci
+    # Enkripsi
+    st.header("Enkripsi")
     plaintext = st.text_input("Masukkan Plain Text : ")
-    key = st.text_input("Masukkan kunci (16 karakter) : ")
+    key_enkripsi = st.text_input("Masukkan kunci (16 karakter) : ")
 
-    # Variabel ciphertext
-    ciphertext = b""
-
-    # Tombol Enkripsi
     if st.button("Enkripsi"):
-        if len(key) == 16:
-            # Proses enkripsi
-            ciphertext = encrypt_AES_IDE(plaintext, key)
+        if len(key_enkripsi) == 16:
+            ciphertext = encrypt_AES_IDE(plaintext, key_enkripsi)
             st.write("Ciphertext: ", ciphertext)
         else:
             st.error("Kunci harus memiliki 16 karakter!")
 
-    # Tombol Dekripsi
+    # Dekripsi
+    st.header("Dekripsi")
+    ciphertext = st.text_input("Masukkan Ciphertext : ")
+    key_dekripsi = st.text_input("Masukkan kunci (16 karakter) : ")
+
     if st.button("Dekripsi"):
-        if len(key) == 16:
-            # Proses dekripsi
+        if len(key_dekripsi) == 16:
             if ciphertext:
-                decryptedtext = decrypt_AES_IDE(ciphertext, key)
+                decryptedtext = decrypt_AES_IDE(ciphertext.encode("utf8"), key_dekripsi)
                 st.write("Plaintext hasil dekripsi: ", decryptedtext)
             else:
                 st.error("Tidak ada ciphertext yang dienkripsi!")
