@@ -20,6 +20,9 @@ def app():
     plaintext = st.text_input("Masukkan Plain Text : ")
     key = st.text_input("Masukkan kunci (16 karakter) : ")
 
+    # Variabel ciphertext
+    ciphertext = b""
+
     # Tombol Enkripsi
     if st.button("Enkripsi"):
         if len(key) == 16:
@@ -28,15 +31,16 @@ def app():
             st.write("Ciphertext: ", ciphertext)
         else:
             st.error("Kunci harus memiliki 16 karakter!")
-        # Inisialisasi variabel ciphertext untuk digunakan pada dekripsi
-        ciphertext = ciphertext
 
     # Tombol Dekripsi
     if st.button("Dekripsi"):
         if len(key) == 16:
             # Proses dekripsi
-            decryptedtext = decrypt_AES_IDE(ciphertext, key)
-            st.write("Plaintext hasil dekripsi: ", decryptedtext)
+            if ciphertext:
+                decryptedtext = decrypt_AES_IDE(ciphertext, key)
+                st.write("Plaintext hasil dekripsi: ", decryptedtext)
+            else:
+                st.error("Tidak ada ciphertext yang dienkripsi!")
         else:
             st.error("Kunci harus memiliki 16 karakter!")
 
