@@ -16,27 +16,30 @@ def app():
     st.set_page_config(page_title="Enkripsi & Dekripsi AES-IDE", page_icon=":lock:")
     st.title("Enkripsi & Dekripsi AES-IDE")
 
-    # Enkripsi
-    st.header("Enkripsi")
-    plaintext = st.text_input("Masukkan Plain Text : ")
-    key_enkripsi = st.text_input("Masukkan kunci (16 karakter) : ")
+    # Input Plaintext dan Kunci untuk Enkripsi
+    plaintext_enkripsi = st.text_input("Masukkan Plain Text untuk Enkripsi: ")
+    key_enkripsi = st.text_input("Masukkan kunci untuk Enkripsi (16 karakter): ")
 
+    # Input Ciphertext dan Kunci untuk Dekripsi
+    ciphertext_deskripsi = st.text_input("Masukkan Ciphertext untuk Deskripsi: ")
+    key_deskripsi = st.text_input("Masukkan kunci untuk Deskripsi (16 karakter): ")
+
+    # Tombol Enkripsi
     if st.button("Enkripsi"):
         if len(key_enkripsi) == 16:
-            ciphertext = encrypt_AES_IDE(plaintext, key_enkripsi)
-            st.write("Ciphertext: ", ciphertext)
+            # Proses enkripsi
+            ciphertext = encrypt_AES_IDE(plaintext_enkripsi, key_enkripsi)
+            st.write("Ciphertext: ", ciphertext.hex())
         else:
             st.error("Kunci harus memiliki 16 karakter!")
 
-    # Dekripsi
-    st.header("Dekripsi")
-    ciphertext = st.text_input("Masukkan Ciphertext : ")
-    key_dekripsi = st.text_input("Masukkan kunci(16 karakter) : ")
-
+    # Tombol Dekripsi
     if st.button("Dekripsi"):
-        if len(key_dekripsi) == 16:
-            if ciphertext:
-                decryptedtext = decrypt_AES_IDE(ciphertext.encode("utf8"), key_dekripsi)
+        if len(key_deskripsi) == 16:
+            if ciphertext_deskripsi:
+                # Proses dekripsi
+                ciphertext_bytes = bytes.fromhex(ciphertext_deskripsi)
+                decryptedtext = decrypt_AES_IDE(ciphertext_bytes, key_deskripsi)
                 st.write("Plaintext hasil dekripsi: ", decryptedtext)
             else:
                 st.error("Tidak ada ciphertext yang dienkripsi!")
