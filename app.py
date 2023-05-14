@@ -28,6 +28,8 @@ def app():
             st.write("Ciphertext: ", ciphertext)
         else:
             st.error("Kunci harus memiliki 16 karakter!")
+        # Inisialisasi variabel ciphertext untuk digunakan pada dekripsi
+        ciphertext = ciphertext
 
     # Tombol Dekripsi
     if st.button("Dekripsi"):
