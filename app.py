@@ -31,7 +31,7 @@ def app():
     # Dekripsi
     st.header("Dekripsi")
     ciphertext = st.text_input("Masukkan Ciphertext : ")
-    key_dekripsi = st.text_input("Masukkan kunci (16 karakter) : ")
+    key_dekripsi = st.text_input("Masukkan kunci(16 karakter) : ")
 
     if st.button("Dekripsi"):
         if len(key_dekripsi) == 16:
