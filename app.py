@@ -1,15 +1,14 @@
 import streamlit as st
-from Crypto.Cipher import AES
+from Crypto.Cipher import AES, IDEA
 from Crypto.Util.Padding import pad, unpad
-import CryptoPlus.Cipher.IDEA 
 
 def encrypt_AES_IDE(plaintext, key):
-    cipher = IDEACipher.new(key.encode("utf8"))
+    cipher = IDEA.new(key.encode("utf8"))
     padded_plaintext = pad(plaintext.encode("utf8"), AES.block_size)
     return cipher.encrypt(padded_plaintext)
 
 def decrypt_AES_IDE(ciphertext, key):
-    cipher = IDEACipher.new(key.encode("utf8"))
+    cipher = IDEA.new(key.encode("utf8"))
     padded_plaintext = cipher.decrypt(ciphertext)
     return unpad(padded_plaintext, AES.block_size).decode("utf8")
 
@@ -50,5 +49,5 @@ def app():
         else:
             st.error("Kunci harus memiliki 16 karakter!")
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     app()
