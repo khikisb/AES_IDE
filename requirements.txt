@@ -1,2 +1,2 @@
 pycryptodome
-Crypto.Cipher
+pycrypto
