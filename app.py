@@ -1,7 +1,7 @@
 import streamlit as st
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad, unpad
-from Crypto.Cipher import IDEACipher
+import CryptoPlus.Cipher.IDEA 
 
 def encrypt_AES_IDE(plaintext, key):
     cipher = IDEACipher.new(key.encode("utf8"))
