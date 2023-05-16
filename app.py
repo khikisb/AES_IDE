@@ -1,14 +1,14 @@
 import streamlit as st
-from Crypto.Cipher import AES, IDEA
+from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad, unpad
 
 def encrypt_AES_IDE(plaintext, key):
-    cipher = IDEA.new(key.encode("utf8"))
+    cipher = AES.new(key.encode("utf8"), AES.MODE_ECB)
     padded_plaintext = pad(plaintext.encode("utf8"), AES.block_size)
     return cipher.encrypt(padded_plaintext)
 
 def decrypt_AES_IDE(ciphertext, key):
-    cipher = IDEA.new(key.encode("utf8"))
+    cipher = AES.new(key.encode("utf8"), AES.MODE_ECB)
     padded_plaintext = cipher.decrypt(ciphertext)
     return unpad(padded_plaintext, AES.block_size).decode("utf8")
 
@@ -29,12 +29,13 @@ def app():
             st.write("Ciphertext: ", ciphertext.hex())
         else:
             st.error("Kunci harus memiliki 16 karakter!")
-
-    st.title("Deskripsi Chippertext AES Metode IDE")
-
+            
+    st.title("Deskripsi Chippertext AES Metode IDE")    
+            
     # Input Ciphertext dan Kunci untuk Dekripsi
     ciphertext_deskripsi = st.text_input("Masukkan Ciphertext untuk Deskripsi: ")
     key_deskripsi = st.text_input("Masukkan kunci untuk Deskripsi (16 karakter): ")
+
 
     # Tombol Dekripsi
     if st.button("Dekripsi"):
