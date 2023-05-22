@@ -1,6 +1,5 @@
 import streamlit as st
 import CryptoPlus.Cipher.IDEA 
-from Cryptodome.Cipher import IDEA
 from Cryptodome.Util.Padding import pad, unpad
 
 def encrypt_AES_IDE(plaintext, key):
