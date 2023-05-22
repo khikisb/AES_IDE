@@ -1,23 +1,23 @@
 import streamlit as st
-from Crypto.Cipher import AES
+from Crypto.Cipher import IDEA
 from Crypto.Util.Padding import pad, unpad
 
 def encrypt_AES_IDE(plaintext, key):
-    cipher = AES.new(key.encode("utf8"), AES.MODE_ECB)
-    padded_plaintext = pad(plaintext.encode("utf8"), AES.block_size)
+    cipher = IDEA.new(key.encode("utf8"))
+    padded_plaintext = pad(plaintext.encode("utf8"), IDEA.block_size)
     return cipher.encrypt(padded_plaintext)
 
 def decrypt_AES_IDE(ciphertext, key):
-    cipher = AES.new(key.encode("utf8"), AES.MODE_ECB)
+    cipher = IDEA.new(key.encode("utf8"))
     padded_plaintext = cipher.decrypt(ciphertext)
-    return unpad(padded_plaintext, AES.block_size).decode("utf8")
+    return unpad(padded_plaintext, IDEA.block_size).decode("utf8")
 
 def app():
     st.set_page_config(page_title="Enkripsi & Dekripsi AES-IDE", page_icon=":lock:")
     st.title("Kelompok 1")
     st.title("(Enkripsi & Dekripsi AES-IDE)")
 
-    st.title("Enkripsi Plaintext AES Metode IDE")
+    st.title("Enkripsi Plaintext AES Metode IDEA")
     # Input Plaintext dan Kunci untuk Enkripsi
     plaintext_enkripsi = st.text_input("Masukkan Plain Text untuk Enkripsi: ")
     key_enkripsi = st.text_input("Masukkan kunci untuk Enkripsi (16 karakter): ")
@@ -30,7 +30,7 @@ def app():
         else:
             st.error("Kunci harus memiliki 16 karakter!")
             
-    st.title("Deskripsi Chippertext AES Metode IDE")    
+    st.title("Deskripsi Chippertext AES Metode IDEA")    
             
     # Input Ciphertext dan Kunci untuk Dekripsi
     ciphertext_deskripsi = st.text_input("Masukkan Ciphertext untuk Deskripsi: ")
